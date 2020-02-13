@@ -1,0 +1,43 @@
+{
+	"added_words":
+	[
+		"localhost",
+		"karaf",
+		"rmi",
+		"postgres",
+		"Username",
+		"Kolja",
+		"username",
+		"css",
+		"wiki",
+		"e3ag",
+		"Config",
+		"usr"
+	],
+	"font_size": 12,
+	"hide_minimap": true,
+	"ignored_packages":
+	[
+		"Vintage"
+	],
+	"ignored_words":
+	[
+		"conf",
+		"createdb",
+		"dropdb",
+		"http",
+		"https",
+		"jconsile",
+		"jconsole",
+		"jmx",
+		"jndi",
+		"pgsql",
+		"postgresql",
+		"psql",
+		"su",
+		"sudo",
+		"systemctl"
+	],
+	"show_minimap": false,
+	"spell_check": true
+}

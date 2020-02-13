@@ -1,0 +1,94 @@
+#!/usr/bin/env bash
+export PATH="/Users/e3ckuo/git/dlp/dlp-platform-release/docker:$PATH"
+
+alias dps="docker ps --format 'table {{.Names}}\t{{.Image}}\t{{.Ports}}'"
+
+function docker_cleanup_all {
+    docker volume rm $(docker volume ls -qf dangling=true)
+    docker rm -v $(docker ps -a -q -f status=exited)
+    docker rmi $(docker images -f "dangling=true" -q)
+    docker rmi $(docker images --all | grep "^<none>" | awk '{print $3}')
+}
+
+# function init_dir {
+#     UPDIR="$(cd ..; pwd)";UPDIR=${UPDIR##*/}
+#     DIR=${PWD##*/}
+#     if [ -z "$1" ]; then container=$DIR; else container=$1; fi
+#     if [ -z "$1" ]; then prefix=$UPDIR; else prefix=$DIR; fi
+#     container=${container%.Dockerfile}
+#     prefix=${prefix%-dlp-release}
+#     prefix=${prefix%-platform-release}
+# }
+# function dclient {
+#     init_dir $@
+#     #docker exec -it ${prefix}_${container}_1 bin/client -h localhost
+#     docker exec -it ${prefix}_${container}_1 dclient
+# }
+# function dexec {
+#     init_dir $@
+#     docker exec -it ${prefix}_${container}_1 $@
+# }
+# function dbash {
+#     init_dir $@
+#     docker exec -it ${prefix}_${container}_1 bash
+# }
+# function dlog {
+#     init_dir $@
+#     docker exec -it ${prefix}_${container}_1 /usr/bin/dlog
+# }
+# function dup {
+#     if [ -z "$1" ]; then
+#         line=$(cat Readme.md| grep up | grep compose)
+#     else
+#         line=$(cat Readme.md| grep up | grep compose | grep "$1")
+#     fi
+#     if [ "$(echo $line | wc -l)" -ne "1" ]
+#     then 
+#         echo "It should be only one docker build + docker-compose instruction in the Readme.md"
+#         return 1
+#     fi
+#     eval $line
+# }
+# function down {
+#     if [ -z "$1" ]; then
+#         line=$(cat Readme.md| grep up | grep compose)
+#     else
+#         line=$(cat Readme.md| grep up | grep compose | grep "$1")
+#     fi
+#     if [ "$(echo $line | wc -l)" -ne "1" ]
+#     then 
+#         echo "It should be only one docker build + docker-compose instruction in the Readme.md"
+#         return 1
+#     fi
+#     line="${line/ up -d/ down}"
+#     eval $line
+#     docker volume rm $(docker volume ls -qf dangling=true)
+#     docker rm -v $(docker ps -a -q -f status=exited)
+#     docker rmi $(docker images -f "dangling=true" -q)
+#     docker rmi $(docker images --all | grep "^<none>" | awk '{print $3}')
+# }
+# function drestart {
+#      init_dir $@
+#      docker restart dlp_${container}_1
+# }
+# function dstop {
+#      init_dir $@
+#      docker stop dlp_${container}_1
+# }
+# function dstart {
+#      init_dir $@
+#      docker start dlp_${container}_1
+# }
+# function dbuild {
+#     if [ -z "$1" ]; then
+#         line=$(cat Readme.md| grep build | grep compose)
+#     else
+#         line=$(cat Readme.md| grep build | grep compose | grep "$1")
+#     fi
+#     if [ "$(echo $line | wc -l)" -ne "1" ]
+#     then 
+#         echo "It should be only one docker build + docker-compose instruction in the Readme.md"
+#         return 1
+#     fi
+#     eval $line $2
+# }

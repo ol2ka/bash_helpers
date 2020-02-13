@@ -1,0 +1,34 @@
+[alias]
+	lol = log --abbrev=8 --date-order --date=iso --graph --decorate --oneline --pretty=format:'%x08%x09%C(yellow)%h %C(cyan)%ad%x08%x08%x08%x08%x08%x08%x08%x08%x08 %C(bold blue)%aN%x09%C(auto)%d %C(reset)%s %C(green)%cr%x08%x08%x08%x08' 
+	ls-new=diff --cached --name-only --diff-filter=A
+	ls-untracked = ls-files --others --exclude-standard
+	ls-ignored=ls-files --others -i --exclude-standard
+	ls-unmerged=ls-files --others -u --exclude-standard
+	diffi=diff --ignore-space-change
+	lola = log -30 --abbrev=8 --date-order --date=iso --graph --full-history --all --pretty=format:'%x08%x09%C(yellow)%h %C(cyan)%ad%x08%x08%x08%x08%x08%x08%x08%x08%x08 %C(bold blue)%aN%x09%C(auto)%d %C(reset)%s %C(green)%cr%x08%x08%x08%x08'
+[color]
+	ui = auto
+[user]
+	name = Olga Kulikova
+	email = okulikova@e3ag.ch
+[merge]
+	conflictstyle = diff3
+	tool = meld
+[core]
+	autocrlf = input
+	eol = lf
+	safecrlf = warn
+	excludesfile = /Users/e3ckuo/.gitignore_global
+	ignorecase = false
+[push]
+	default = current
+[color "status"]
+	changed = red bold
+	added = green bold
+#[diff]
+#	tool = meld
+#	external = /Users/e3ckuo/diff.py
+[difftool]
+	prompt = false
+[pull]
+	ff = only
